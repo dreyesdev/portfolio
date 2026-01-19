@@ -2,9 +2,14 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/global.css";
 
+const assets = {
+  avatar: "/assets/avatar.png",
+  cv: "/cv/David_Reyes_CV.pdf",
+};
 
 const links = {
   live: "https://timesheetlite-app.thankfulsea-910a130e.northeurope.azurecontainerapps.io/",
+  swagger: "https://timesheetlite-app.thankfulsea-910a130e.northeurope.azurecontainerapps.io/swagger",
   github: "https://github.com/dreyesdev",
   linkedin: "https://www.linkedin.com/in/davidreyesdev",
   timesheetRepo: "https://github.com/dreyesdev/timesheet-lite",
@@ -14,11 +19,19 @@ const links = {
 const projects = [
   {
     title: "TimesheetLite",
-    desc: "ASP.NET Core MVC app showcasing reporting workflows, REST APIs, PDF export, and an Azure-deployed live demo.",
+    desc: "ASP.NET Core MVC demo showcasing reporting workflows, REST APIs, PDF export, and an Azure-deployed live demo.",
+    extra: "Deployed on Azure Container Apps + Azure SQL, shipped via GitHub Actions (CI/CD).",
     stack: [".NET 8", "ASP.NET Core", "EF Core", "SQL", "Swagger", "QuestPDF", "Azure"],
     live: links.live,
     repo: links.timesheetRepo,
+    swagger: links.swagger,
     featured: true,
+    screenshots: [
+      "/projects/timesheetlite/timesheetlite-dashboard.png",
+      "/projects/timesheetlite/timesheetlite-monthly-report.png",
+      "/projects/timesheetlite/timesheetlite-pdf-export.png",
+      "/projects/timesheetlite/timesheetlite-swagger.png",
+    ],
   },
   {
     title: "PDF Reporting Module (QuestPDF)",
@@ -26,6 +39,7 @@ const projects = [
     stack: ["QuestPDF", ".NET", "Reporting"],
     live: null,
     repo: null,
+    featured: false,
   },
   {
     title: "Background Jobs & Automation (Quartz)",
@@ -33,8 +47,11 @@ const projects = [
     stack: ["Quartz.NET", "Background jobs", "Observability"],
     live: null,
     repo: null,
+    featured: false,
   },
 ];
+
+const tags = ["C#", ".NET 8", "ASP.NET Core", "EF Core", "SQL Server / Azure SQL", "Swagger/OpenAPI", "Azure", "GitHub Actions", "Docker"];
 ---
 
 <BaseLayout title="David Reyes · Portfolio">
@@ -50,10 +67,22 @@ const projects = [
 
     <section class="rounded-3xl border border-white/10 bg-white/5 p-7 shadow-[0_0_0_1px_rgba(255,255,255,.04)]">
       <div class="flex flex-col gap-4">
-        <h1 class="text-4xl font-semibold tracking-tight">David Reyes</h1>
-        <p class="text-lg text-slate-300">
-          Senior Software Engineer (.NET Backend) — APIs, integrations, automation, and data-heavy systems.
-        </p>
+        <div class="flex items-center gap-4">
+          <img
+            src={assets.avatar}
+            alt="David Reyes"
+            width="56"
+            height="56"
+            loading="eager"
+            class="h-14 w-14 rounded-full border border-white/10 object-cover"
+          />
+          <div>
+            <h1 class="text-4xl font-semibold tracking-tight">David Reyes</h1>
+            <p class="text-lg text-slate-300">
+              Senior Software Engineer (.NET Backend) — APIs, integrations, automation, and data-heavy systems.
+            </p>
+          </div>
+        </div>
 
         <p class="max-w-3xl text-slate-300">
           I build reliable backend services with C#, ASP.NET Core, EF Core and SQL Server/Azure SQL, with a strong focus
@@ -64,25 +93,32 @@ const projects = [
           <a href="#projects" class="rounded-xl bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-400">
             View projects
           </a>
-          <a href={links.live} target="_blank" class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+
+          <a href={links.live} target="_blank" rel="noreferrer"
+             class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
             Live demo
           </a>
-          <a href={links.timesheetRepo} target="_blank" class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
-            TimesheetLite repo
+
+          <a href={assets.cv} target="_blank" rel="noreferrer"
+             class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+            Download CV
           </a>
-          <a href={links.github} target="_blank" class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+
+          <a href={links.github} target="_blank" rel="noreferrer"
+             class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
             GitHub
           </a>
-          <a href={links.linkedin} target="_blank" class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+
+          <a href={links.linkedin} target="_blank" rel="noreferrer"
+             class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
             LinkedIn
           </a>
         </div>
 
         <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
-          {["C#", ".NET 8", "ASP.NET Core", "EF Core", "SQL Server / Azure SQL", "Swagger/OpenAPI", "Azure", "GitHub Actions", "Docker"]
-            .map((t) => (
-              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">{t}</span>
-            ))}
+          {tags.map((t) => (
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">{t}</span>
+          ))}
         </div>
       </div>
     </section>
@@ -103,6 +139,7 @@ const projects = [
             <div>
               <h3 class="text-lg font-semibold">{p.title}</h3>
               <p class="mt-2 text-sm text-slate-300">{p.desc}</p>
+              {p.extra ? <p class="mt-2 text-sm text-slate-400">{p.extra}</p> : null}
             </div>
 
             {p.featured && (
@@ -116,9 +153,59 @@ const projects = [
             ))}
           </div>
 
+          {p.screenshots ? (
+            <div class="mt-5">
+              <div class="rounded-2xl border border-white/10 bg-black/20 p-3">
+                <a href={p.screenshots[0]} target="_blank" rel="noreferrer" class="block overflow-hidden rounded-xl">
+                  <img src={p.screenshots[0]} alt={`${p.title} screenshot`} loading="lazy" class="w-full rounded-xl" />
+                </a>
+
+                <div class="mt-3 grid gap-3 md:grid-cols-3">
+                  {p.screenshots.slice(1).map((src) => (
+                    <a href={src} target="_blank" rel="noreferrer" class="block overflow-hidden rounded-xl border border-white/10 bg-white/5">
+                      <img src={src} alt={`${p.title} screenshot`} loading="lazy" class="w-full rounded-xl" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div class="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-300">
+                <div class="font-medium text-slate-200">How to evaluate this demo (60s)</div>
+                <ol class="mt-2 list-decimal pl-5 text-slate-300">
+                  <li>Open Monthly Report — pick month/person/project → Apply.</li>
+                  <li>Click Print PDF to export the report.</li>
+                  <li>Open Swagger — try GET /api/people.</li>
+                </ol>
+              </div>
+
+              <div class="mt-4 grid gap-4 md:grid-cols-2">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-300">
+                  <div class="font-medium text-slate-200">Deployment facts</div>
+                  <ul class="mt-2 list-disc pl-5">
+                    <li>Runtime: Azure Container Apps</li>
+                    <li>DB: Azure SQL</li>
+                    <li>CI/CD: GitHub Actions (build/test/push Docker image)</li>
+                    <li>Config: env vars + secrets (no credentials in code)</li>
+                  </ul>
+                </div>
+
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-300">
+                  <div class="font-medium text-slate-200">What this shows</div>
+                  <ul class="mt-2 list-disc pl-5">
+                    <li>Reporting workflow: filters → aggregates → detailed tables</li>
+                    <li>PDF export (QuestPDF) with a real report layout</li>
+                    <li>Swagger-ready API surface</li>
+                    <li>Production-style deployment (container + env/secrets)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ) : null}
+
           <div class="mt-5 flex flex-wrap gap-3">
             {p.live ? (
-              <a href={p.live} target="_blank" class="rounded-xl bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-400">
+              <a href={p.live} target="_blank" rel="noreferrer"
+                 class="rounded-xl bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-400">
                 Live
               </a>
             ) : (
@@ -126,8 +213,16 @@ const projects = [
             )}
 
             {p.repo ? (
-              <a href={p.repo} target="_blank" class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+              <a href={p.repo} target="_blank" rel="noreferrer"
+                 class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
                 Source
+              </a>
+            ) : null}
+
+            {p.swagger ? (
+              <a href={p.swagger} target="_blank" rel="noreferrer"
+                 class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+                Swagger
               </a>
             ) : null}
           </div>
@@ -156,14 +251,17 @@ const projects = [
       Reach me at <a class="text-blue-300 hover:text-blue-200" href={links.email}>davidreyesdev@outlook.com</a>
     </p>
     <div class="mt-4 flex flex-wrap gap-3">
-      <a href={links.linkedin} target="_blank" class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+      <a href={links.linkedin} target="_blank" rel="noreferrer"
+         class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
         LinkedIn
       </a>
-      <a href={links.github} target="_blank" class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+      <a href={links.github} target="_blank" rel="noreferrer"
+         class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
         GitHub
       </a>
-      <a href={links.live} target="_blank" class="rounded-xl bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-400">
-        TimesheetLite live demo
+      <a href={assets.cv} target="_blank" rel="noreferrer"
+         class="rounded-xl bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-400">
+        Download CV
       </a>
     </div>
   </section>
