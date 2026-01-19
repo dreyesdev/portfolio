@@ -1,0 +1,114 @@
+---
+const githubUrl = "https://github.com/dreyesdev";
+const linkedInUrl = "https://www.linkedin.com/in/davidreyesdev";
+const timesheetDemoUrl = "https://timesheetlite-app.thankfulsea-910a130e.northeurope.azurecontainerapps.io/";
+const timesheetRepoUrl = "https://github.com/dreyesdev/timesheet-lite";
+---
+
+<header class="relative overflow-hidden border-b border-slate-200">
+  <div class="absolute inset-0">
+    <div class="h-full w-full bg-gradient-to-b from-slate-50 via-white to-white"></div>
+    <div class="pointer-events-none absolute -top-40 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-500/10 blur-3xl"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-5xl px-5 py-14 sm:py-16">
+    <nav class="flex items-center justify-between">
+      <div class="font-semibold tracking-tight">david-reyes.dev</div>
+      <div class="flex gap-3 text-sm">
+        <a class="text-slate-600 hover:text-slate-900" href="#projects">Projects</a>
+        <a class="text-slate-600 hover:text-slate-900" href="#about">About</a>
+        <a class="text-slate-600 hover:text-slate-900" href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <div class="mt-12 grid gap-10 sm:mt-14 sm:grid-cols-[1.3fr_0.7fr] sm:items-center">
+      <div>
+        <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight">
+          David Reyes
+        </h1>
+
+        <p class="mt-4 text-lg sm:text-xl text-slate-700">
+          Senior Software Engineer <span class="text-slate-400">(.NET Backend)</span> — APIs, integrations, automation, and data-heavy systems.
+        </p>
+
+        <p class="mt-4 text-slate-600 max-w-2xl">
+          I build reliable backend services with C#, ASP.NET Core, EF Core and SQL Server, with a strong focus on consistency,
+          performance, observability and production support. Currently open to fully remote backend roles.
+        </p>
+
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a
+            class="inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
+            href="#projects"
+          >
+            View Projects
+          </a>
+
+          <a
+            class="inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50"
+            href={timesheetDemoUrl}
+            target="_blank"
+            rel="noopener"
+          >
+            TimesheetLite Live Demo
+          </a>
+
+          <a
+            class="inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50"
+            href={timesheetRepoUrl}
+            target="_blank"
+            rel="noopener"
+          >
+            TimesheetLite GitHub
+          </a>
+
+          <a
+            class="inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50"
+            href={githubUrl}
+            target="_blank"
+            rel="noopener"
+          >
+            GitHub
+          </a>
+
+          <a
+            class="inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50"
+            href={linkedInUrl}
+            target="_blank"
+            rel="noopener"
+          >
+            LinkedIn
+          </a>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-2 text-xs text-slate-600">
+          <span class="rounded-full bg-slate-100 px-3 py-1">C#</span>
+          <span class="rounded-full bg-slate-100 px-3 py-1">.NET 8</span>
+          <span class="rounded-full bg-slate-100 px-3 py-1">ASP.NET Core</span>
+          <span class="rounded-full bg-slate-100 px-3 py-1">EF Core</span>
+          <span class="rounded-full bg-slate-100 px-3 py-1">SQL Server / Azure SQL</span>
+          <span class="rounded-full bg-slate-100 px-3 py-1">Azure</span>
+          <span class="rounded-full bg-slate-100 px-3 py-1">GitHub Actions</span>
+          <span class="rounded-full bg-slate-100 px-3 py-1">Docker</span>
+        </div>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 bg-white/70 p-6 shadow-sm backdrop-blur">
+        <div class="text-sm font-semibold">Quick snapshot</div>
+        <ul class="mt-3 space-y-2 text-sm text-slate-700">
+          <li><span class="font-medium">Focus:</span> Backend & integrations</li>
+          <li><span class="font-medium">Strength:</span> Data + automation</li>
+          <li><span class="font-medium">Style:</span> Clean, maintainable, production-ready</li>
+          <li><span class="font-medium">Location:</span> Spain (Remote)</li>
+        </ul>
+
+        <div class="mt-5 rounded-2xl bg-slate-50 p-4 text-sm text-slate-700">
+          <div class="font-medium">Featured:</div>
+          <div class="mt-1">
+            TimesheetLite — reporting workflow + REST API + PDF export, deployed to Azure.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
