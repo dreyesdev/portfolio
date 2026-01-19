@@ -1,113 +1,170 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Section from "../components/Section.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 
-const timesheetDemoUrl = "https://timesheetlite-app.thankfulsea-910a130e.northeurope.azurecontainerapps.io/";
-const timesheetRepoUrl = "https://github.com/dreyesdev/timesheet-lite";
+
+const links = {
+  live: "https://timesheetlite-app.thankfulsea-910a130e.northeurope.azurecontainerapps.io/",
+  github: "https://github.com/dreyesdev",
+  linkedin: "https://www.linkedin.com/in/davidreyesdev",
+  timesheetRepo: "https://github.com/dreyesdev/timesheet-lite",
+  email: "mailto:davidreyesdev@outlook.com",
+};
+
+const projects = [
+  {
+    title: "TimesheetLite",
+    desc: "ASP.NET Core MVC app showcasing reporting workflows, REST APIs, PDF export, and an Azure-deployed live demo.",
+    stack: [".NET 8", "ASP.NET Core", "EF Core", "SQL", "Swagger", "QuestPDF", "Azure"],
+    live: links.live,
+    repo: links.timesheetRepo,
+    featured: true,
+  },
+  {
+    title: "PDF Reporting Module (QuestPDF)",
+    desc: "A focused module demonstrating templated PDF generation for reporting/export scenarios. (Coming next)",
+    stack: ["QuestPDF", ".NET", "Reporting"],
+    live: null,
+    repo: null,
+  },
+  {
+    title: "Background Jobs & Automation (Quartz)",
+    desc: "Recurring jobs, scheduling patterns, and reliability practices for production automation. (Coming next)",
+    stack: ["Quartz.NET", "Background jobs", "Observability"],
+    live: null,
+    repo: null,
+  },
+];
 ---
 
-<BaseLayout
-  title="David Reyes | Senior Software Engineer (.NET Backend)"
-  description="Senior Software Engineer (.NET Backend) focused on data-heavy systems, automation, APIs and integrations."
->
-  <Header />
-
-  <main>
-    <Section
-      id="projects"
-      title="Projects"
-      subtitle="A small selection of interview-friendly projects. Fewer, better."
-    >
-      <div class="grid gap-5 md:grid-cols-2">
-        <ProjectCard
-          title="TimesheetLite"
-          description="ASP.NET Core MVC app showcasing reporting workflows, REST APIs, PDF export, and an Azure-deployed live demo."
-          stack={[".NET 8", "ASP.NET Core MVC", "EF Core", "Swagger", "QuestPDF", "Azure"]}
-          links={[
-            { label: "Live Demo", href: timesheetDemoUrl },
-            { label: "GitHub", href: timesheetRepoUrl },
-          ]}
-        />
-
-        <ProjectCard
-          title="PDF Reporting Module (QuestPDF)"
-          description="A focused module demonstrating templated PDF generation for reporting/export scenarios. (Coming next)"
-          stack={["QuestPDF", ".NET", "Reporting"]}
-          links={[
-            { label: "Coming soon", href: "#" },
-          ]}
-        />
-
-        <ProjectCard
-          title="Background Jobs & Automation (Quartz)"
-          description="Recurring jobs, scheduling patterns, and reliability practices for production automation. (Coming next)"
-          stack={["Quartz.NET", "Background jobs", "Observability"]}
-          links={[
-            { label: "Coming soon", href: "#" },
-          ]}
-        />
-
-        <ProjectCard
-          title="Portfolio"
-          description="This site. Lightweight, fast, and designed to make recruiters do less guessing."
-          stack={["Astro", "Tailwind", "Vercel"]}
-          links={[
-            { label: "Source (this repo)", href: "https://github.com/dreyesdev/portfolio" },
-          ]}
-        />
+<BaseLayout title="David Reyes · Portfolio">
+  <header class="flex flex-col gap-6">
+    <nav class="flex items-center justify-between text-sm text-slate-300">
+      <a href="/" class="font-semibold tracking-tight text-slate-100">david-reyes.dev</a>
+      <div class="flex gap-4">
+        <a class="hover:text-white" href="#projects">Projects</a>
+        <a class="hover:text-white" href="#about">About</a>
+        <a class="hover:text-white" href="#contact">Contact</a>
       </div>
-    </Section>
+    </nav>
 
-    <Section
-      id="about"
-      title="About"
-      subtitle="Backend-first engineer. I like problems that have data, rules, and consequences."
-    >
-      <div class="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
-        <p class="text-slate-700 leading-relaxed">
-          I work on data-heavy internal platforms where correctness matters: allocations, reporting, monthly workflows and production support.
-          My day-to-day is a mix of backend development, query optimization, incident resolution, and automation.
+    <section class="rounded-3xl border border-white/10 bg-white/5 p-7 shadow-[0_0_0_1px_rgba(255,255,255,.04)]">
+      <div class="flex flex-col gap-4">
+        <h1 class="text-4xl font-semibold tracking-tight">David Reyes</h1>
+        <p class="text-lg text-slate-300">
+          Senior Software Engineer (.NET Backend) — APIs, integrations, automation, and data-heavy systems.
         </p>
 
-        <p class="mt-4 text-slate-700 leading-relaxed">
-          I build with C#, ASP.NET Core, EF Core and SQL Server/Azure SQL, and I care a lot about maintainability:
-          structured logging, validation, safe refactors, and predictable behavior under real-world constraints.
+        <p class="max-w-3xl text-slate-300">
+          I build reliable backend services with C#, ASP.NET Core, EF Core and SQL Server/Azure SQL, with a strong focus
+          on correctness, performance, observability and production support. Open to fully remote backend roles.
         </p>
 
-        <p class="mt-4 text-slate-700 leading-relaxed">
-          I’m currently targeting fully remote backend roles in product teams where I can own features end-to-end and ship reliable systems.
-        </p>
+        <div class="mt-2 flex flex-wrap gap-3">
+          <a href="#projects" class="rounded-xl bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-400">
+            View projects
+          </a>
+          <a href={links.live} target="_blank" class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+            Live demo
+          </a>
+          <a href={links.timesheetRepo} target="_blank" class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+            TimesheetLite repo
+          </a>
+          <a href={links.github} target="_blank" class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+            GitHub
+          </a>
+          <a href={links.linkedin} target="_blank" class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+            LinkedIn
+          </a>
+        </div>
+
+        <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+          {["C#", ".NET 8", "ASP.NET Core", "EF Core", "SQL Server / Azure SQL", "Swagger/OpenAPI", "Azure", "GitHub Actions", "Docker"]
+            .map((t) => (
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">{t}</span>
+            ))}
+        </div>
       </div>
-    </Section>
+    </section>
+  </header>
 
-    <Section
-      id="stack"
-      title="Tech Stack"
-      subtitle="Tools I’m comfortable shipping and supporting in production."
-    >
-      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {[
-          ".NET 8 / C#",
-          "ASP.NET Core (MVC / Web API)",
-          "EF Core",
-          "SQL Server / Azure SQL",
-          "Swagger / OpenAPI",
-          "QuestPDF",
-          "Azure (App Service / Container Apps basics)",
-          "GitHub Actions (CI/CD)",
-          "Docker",
-          "Structured logging / troubleshooting",
-        ].map((item) => (
-          <div class="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm">
-            {item}
+  <section id="projects" class="mt-12">
+    <div class="mb-5 flex items-end justify-between">
+      <div>
+        <h2 class="text-2xl font-semibold tracking-tight">Projects</h2>
+        <p class="mt-1 text-slate-300">A small selection of interview-friendly projects. Fewer, better.</p>
+      </div>
+    </div>
+
+    <div class="grid gap-5 md:grid-cols-2">
+      {projects.map((p) => (
+        <article class={"rounded-3xl border border-white/10 bg-white/5 p-6 " + (p.featured ? "md:col-span-2" : "")}>
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-lg font-semibold">{p.title}</h3>
+              <p class="mt-2 text-sm text-slate-300">{p.desc}</p>
+            </div>
+
+            {p.featured && (
+              <span class="rounded-full bg-blue-500/20 px-3 py-1 text-xs font-medium text-blue-200">Featured</span>
+            )}
           </div>
-        ))}
-      </div>
-    </Section>
-  </main>
 
-  <Footer />
+          <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+            {p.stack.map((s) => (
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">{s}</span>
+            ))}
+          </div>
+
+          <div class="mt-5 flex flex-wrap gap-3">
+            {p.live ? (
+              <a href={p.live} target="_blank" class="rounded-xl bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-400">
+                Live
+              </a>
+            ) : (
+              <span class="rounded-xl border border-white/10 px-4 py-2 text-sm text-slate-400">Coming soon</span>
+            )}
+
+            {p.repo ? (
+              <a href={p.repo} target="_blank" class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+                Source
+              </a>
+            ) : null}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="about" class="mt-12 rounded-3xl border border-white/10 bg-white/5 p-7">
+    <h2 class="text-2xl font-semibold tracking-tight">About</h2>
+    <p class="mt-3 text-slate-300">
+      Backend-first engineer. I like problems that have data, rules, and consequences.
+    </p>
+    <p class="mt-3 text-slate-300">
+      I work on data-heavy internal platforms where correctness matters: allocations, reporting, monthly workflows and production support.
+      My day-to-day is a mix of backend development, query optimization, incident resolution, and automation.
+    </p>
+    <p class="mt-3 text-slate-300">
+      I care about maintainability: structured logging, validation, safe refactors, and predictable behavior under real-world constraints.
+    </p>
+  </section>
+
+  <section id="contact" class="mt-12 rounded-3xl border border-white/10 bg-white/5 p-7">
+    <h2 class="text-2xl font-semibold tracking-tight">Contact</h2>
+    <p class="mt-3 text-slate-300">
+      Reach me at <a class="text-blue-300 hover:text-blue-200" href={links.email}>davidreyesdev@outlook.com</a>
+    </p>
+    <div class="mt-4 flex flex-wrap gap-3">
+      <a href={links.linkedin} target="_blank" class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+        LinkedIn
+      </a>
+      <a href={links.github} target="_blank" class="rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:bg-white/10">
+        GitHub
+      </a>
+      <a href={links.live} target="_blank" class="rounded-xl bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-400">
+        TimesheetLite live demo
+      </a>
+    </div>
+  </section>
 </BaseLayout>

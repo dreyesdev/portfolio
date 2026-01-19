@@ -1,19 +1,26 @@
 ---
-const { title = "David Reyes | .NET Backend Engineer", description = "Senior Software Engineer (.NET Backend) focused on data-heavy systems, automation, and APIs." } = Astro.props;
+const { title = "David Reyes" } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <meta name="description" content="Senior Software Engineer (.NET Backend) — APIs, data-heavy systems, automation." />
   </head>
 
-  <body class="bg-white text-slate-900 antialiased">
-    <div class="min-h-screen">
-      <slot />
+  <body class="min-h-screen bg-slate-950 text-slate-100">
+    <div class="pointer-events-none fixed inset-0 -z-10">
+      <div class="absolute inset-0 bg-[radial-gradient(1000px_circle_at_20%_10%,rgba(59,130,246,.18),transparent_55%),radial-gradient(900px_circle_at_80%_0%,rgba(14,165,233,.16),transparent_55%),radial-gradient(900px_circle_at_40%_90%,rgba(148,163,184,.08),transparent_55%)]"></div>
     </div>
+
+    <main class="mx-auto max-w-5xl px-5 py-10">
+      <slot />
+      <footer class="mt-16 border-t border-white/10 pt-6 text-sm text-slate-400">
+        © {new Date().getFullYear()} David Reyes · Built with Astro · Deployed on Vercel
+      </footer>
+    </main>
   </body>
 </html>
