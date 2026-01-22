@@ -1,5 +1,5 @@
 ---
-import { Analytics } from "@vercel/analytics/astro";
+import { VercelAnalytics } from "@vercel/analytics/astro";
 const { title = "David Reyes" } = Astro.props;
 ---
 
@@ -24,7 +24,7 @@ const { title = "David Reyes" } = Astro.props;
       </footer>
     </main>
 
-    <Analytics />
+    <VercelAnalytics />
   </body>
 </html>
 
